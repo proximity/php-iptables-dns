@@ -60,7 +60,7 @@ foreach($config['hosts'] as $host => $label)
 	if (!$resolveFailed)
 	{
 		debug("Add new rule for $ip");
-		IPTables::add($ip, $config['iptables_action'], $config['iptables_chain']);
+		IPTables::add($ip, $config['iptables_action'], $config['iptables_chain'], 'PREPEND');
 	}
 
 	debug("Update cache");
