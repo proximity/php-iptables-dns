@@ -36,7 +36,7 @@ foreach($config['hosts'] as $host => $label)
 	$add = true;
 
 	// Find the cache object for this
-	if (isset($cache[$host]))
+	if ($config['enable_cache_read'] && isset($cache[$host]))
 	{
 		// If it's different, update iptables
 		debug("Cache hit");
@@ -70,5 +70,8 @@ foreach($config['hosts'] as $host => $label)
 	debug("----------");
 }
 
-// Write to cache
-file_put_contents($config['cache_location'], serialize($cache));
+if ($config['enable_cache_write'])
+{
+	// Write to cache
+	file_put_contents($config['cache_location'], serialize($cache));
+}
