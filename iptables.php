@@ -5,7 +5,7 @@ class IPTables {
 	{
 		$ipEscaped = escapeshellarg($ip);
 		$appendPrependSwitch = ($appendPrepend === 'APPEND') ? '-A' : '-I';
-		$cmd = "iptables -A $chain -s $ipEscaped -j $action";
+		$cmd = "iptables $appendPrependSwitch $chain -s $ipEscaped -j $action";
 		debug($cmd);
 		shell_exec($cmd);
 	}
