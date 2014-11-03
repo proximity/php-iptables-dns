@@ -51,14 +51,16 @@ foreach($config['hosts'] as $host => $label)
 		else
 		{
 			// Delete old rule
-			debug("IP changed, rule to be deleted");
-			IPTables::delete($ip, $config['iptables_action'], $config['iptables_chain']);
+			debug("IP changed, delete old cached rule");
+			IPTables::delete($old, $config['iptables_action'], $config['iptables_chain']);
 		}
 	}
 
 	// Add new rule as long as resolve was successful
 	if (!$resolveFailed)
 	{
+		debug("Delete rule for $ip in case it exists already");
+		IPTables::delete($ip, $config['iptables_action'], $config['iptables_chain']);
 		debug("Add new rule for $ip");
 		IPTables::add($ip, $config['iptables_action'], $config['iptables_chain'], 'PREPEND');
 	}
