@@ -1,5 +1,6 @@
 <?php
 require_once('config.php');
+require_once('iptables.php');
 
 // Put the current cache into an array so we can compare easily
 $cache = array();
