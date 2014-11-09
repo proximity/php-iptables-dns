@@ -21,7 +21,7 @@ if (file_exists($config['cache_location']))
 // Make sure hosts exists in configuration
 if (!isset($config['hosts']) || !is_array($config['hosts']))
 {
-	throw new Execption("Hosts configuration not set or not an array");
+	throw new Exception("Hosts configuration not set or not an array");
 }
 
 // Loop through hosts
